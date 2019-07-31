@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //save the activity instance state if device configuration is changed
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
