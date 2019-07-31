@@ -32,7 +32,7 @@
         android:layout_height="@dimen/equal_lay_height"
         android:layout_marginStart="@dimen/equal_marginStart"
         android:layout_marginLeft="@dimen/equal_marginLeft"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="192dp"
         android:layout_marginEnd="@dimen/equal_marginEnd"
         android:layout_marginRight="@dimen/equal_marginRight"
         android:background="#E9900F"
@@ -80,8 +80,8 @@
 
     <Button
         android:id="@+id/button_operator_plus"
-        android:layout_width="292dp"
-        android:layout_height="81dp"
+        android:layout_width="186dp"
+        android:layout_height="82dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="192dp"
@@ -91,7 +91,8 @@
         android:onClick="onPlusClick"
         android:text="@string/button_label_plus"
         android:textSize="@dimen/plus_textSize"
-        app:layout_constraintEnd_toStartOf="@+id/button_operator_minus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toEndOf="@+id/button_num_three"
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
@@ -147,7 +148,7 @@
         android:text="@string/button_label_minus"
         android:textSize="@dimen/minus_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
@@ -247,6 +248,7 @@
 
     <TextView
         android:id="@+id/textView_output"
+        android:onClick="onDeleteClick"
         android:layout_width="711dp"
         android:layout_height="53dp"
         android:layout_marginStart="@dimen/output_marginStart"
