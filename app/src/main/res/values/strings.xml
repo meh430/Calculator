@@ -22,4 +22,16 @@
     <string name="decimal_exists">Decimal already present</string>
     <string name="operator_exists">cannot use operator twice yet</string>
     <string name="no_operator">You haven\'t clicked any operators</string>
+    <string name="button_label_calc">A/V</string>
+    <string name="activity2_name">Areas and Volumes</string>
+    <string name="button_label_triangle">Area of Triangle</string>
+    <string name="button_label_rectangle">Area of Rectangle</string>
+    <string name="button_label_circle">Area of Circle</string>
+    <string name="button_label_rectPrism">Volume of Rectangular Prism</string>
+    <string name="button_label_pyramid3">Volume of 3 Sided Pyramid</string>
+    <string name="button_label_pyramid4">Volume of 4 Sided Pyramid</string>
+    <string name="button_label_cone">Volume of Cone</string>
+    <string name="button_label_cylinder">Volume of Cylinder</string>
+    <string name="button_label_sphere">Volume of Sphere</string>
+    <string name="activity3_name">Area/Volume</string>
 </resources>

@@ -211,8 +211,8 @@
 
     <Button
         android:id="@+id/button_num_zero"
-        android:layout_width="@dimen/zero_lay_width"
-        android:layout_height="@dimen/zero_lay_height"
+        android:layout_width="84dp"
+        android:layout_height="82dp"
         android:layout_marginStart="@dimen/zero_marginStart"
         android:layout_marginLeft="@dimen/zero_marginLeft"
         android:layout_marginTop="548dp"
@@ -224,7 +224,7 @@
         android:textColor="#FFFFFF"
         android:textSize="@dimen/zero_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -316,7 +316,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_num_one"
+        android:id="@+id/button_operator_calc"
+        android:layout_width="@dimen/one_lay_width"
+        android:layout_height="@dimen/one_lay_height"
+        android:layout_marginStart="@dimen/one_marginStart"
+        android:layout_marginLeft="@dimen/one_marginLeft"
+        android:layout_marginTop="548dp"
+        android:layout_marginEnd="@dimen/one_marginEnd"
+        android:layout_marginRight="@dimen/one_marginRight"
+        android:background="#E9900F"
+        android:onClick="onCalculationClick"
+        android:text="@string/button_label_calc"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/one_textSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_num_one2"
         android:layout_width="@dimen/one_lay_width"
         android:layout_height="@dimen/one_lay_height"
         android:layout_marginStart="@dimen/one_marginStart"

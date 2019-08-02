@@ -3,10 +3,17 @@
 //if it is not null, that means the user has clicked on a operation so the calculator is taking the second value
 //perform the calculation when the equal sign is pressed and carry out appropriate calculation depending on the value in strOperator
 
+//TODO: make another activity for simple area and volume calculations
+//Go from the main activity to the activity with all the options
+//Then, go to a different activity depending on what shape was chosen
+//Will have to figure out how to send data back from the area/volume calculation activity to the main activity
+//probably use a string key containing the class package name
+
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -22,16 +29,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView output;
     private TextView operator;
     private Toast toast;
-    private int orientatation;
+    private int orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        orientatation = this.getResources().getConfiguration().orientation;
+        orientation = this.getResources().getConfiguration().orientation;
 
         output = (TextView) findViewById(R.id.textView_output);
         operator = (TextView) findViewById(R.id.textView_op);
+
+        Intent areaVol = getIntent();//coming from the AreaVolSolve activity
 
         if (savedInstanceState != null) {
             boolean hasContent = savedInstanceState.getBoolean("resume");
@@ -62,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDecimalClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -99,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onEqualClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -126,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (output != null && operator != null) {
                 String strAnswer = Double.toString(dblAnswer);
+
+                if (strAnswer.length() >= 7) {
+                    output.setTextSize(40);
+                } else {
+                    output.setTextSize(85);
+                }
+
                 output.setText(strAnswer);
                 operator.setText("");
                 blnOperator = false;
@@ -159,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSevenClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -183,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onThreeClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -207,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onPlusClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -226,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTwoClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -250,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSixClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -274,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMinusClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -293,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onFiveClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -317,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onEightClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -341,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNineClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -365,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onZeroClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -389,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClearClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -407,7 +423,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSlashClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -426,7 +442,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onModulusClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -445,7 +461,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onFourClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -469,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMultiplyClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -488,7 +504,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onOneClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -512,7 +528,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDeleteClick(View view) {
-        if (orientatation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             output.setTextSize(85);
         } else {
             output.setTextSize(40);
@@ -528,5 +544,10 @@ public class MainActivity extends AppCompatActivity {
                 output.setText(value1);
             }
         }
+    }
+
+    public void onCalculationClick(View view) {
+        Intent selectIntent = new Intent(this, SelectActivity.class);
+        startActivity(selectIntent);
     }
 }

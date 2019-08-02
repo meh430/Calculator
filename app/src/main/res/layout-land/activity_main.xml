@@ -8,6 +8,25 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/button_calculation2"
+        android:layout_width="@dimen/one_lay_width"
+        android:layout_height="@dimen/one_lay_height"
+        android:layout_marginStart="@dimen/one_marginStart"
+        android:layout_marginLeft="@dimen/one_marginLeft"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="@dimen/one_marginEnd"
+        android:layout_marginRight="@dimen/one_marginRight"
+        android:background="#BA706969"
+        android:onClick="onOneClick"
+        android:text="@string/button_label_one"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/one_textSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_output" />
+
+    <Button
         android:id="@+id/button_operator_decimal"
         android:layout_width="@dimen/decimal_lay_width"
         android:layout_height="@dimen/decimal_lay_height"
@@ -74,14 +93,14 @@
         android:textColor="#FFFFFF"
         android:textSize="@dimen/three_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
     <Button
         android:id="@+id/button_operator_plus"
-        android:layout_width="186dp"
-        android:layout_height="82dp"
+        android:layout_width="83dp"
+        android:layout_height="81dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="192dp"
@@ -92,7 +111,7 @@
         android:text="@string/button_label_plus"
         android:textSize="@dimen/plus_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toEndOf="@+id/button_num_three"
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
@@ -111,7 +130,7 @@
         android:textColor="#FFFFFF"
         android:textSize="@dimen/two_textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.346"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
@@ -317,7 +336,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_output" />
 
     <Button
-        android:id="@+id/button_num_one"
+        android:id="@+id/button_operator_calc"
         android:layout_width="@dimen/one_lay_width"
         android:layout_height="@dimen/one_lay_height"
         android:layout_marginStart="@dimen/one_marginStart"
@@ -325,9 +344,9 @@
         android:layout_marginTop="192dp"
         android:layout_marginEnd="@dimen/one_marginEnd"
         android:layout_marginRight="@dimen/one_marginRight"
-        android:background="#BA706969"
-        android:onClick="onOneClick"
-        android:text="@string/button_label_one"
+        android:background="#E9900F"
+        android:onClick="onCalculationClick"
+        android:text="@string/button_label_calc"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/one_textSize"
         app:layout_constraintEnd_toEndOf="parent"
