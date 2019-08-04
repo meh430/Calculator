@@ -11,18 +11,21 @@
 
 package com.example.calculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+//put redundant things in methods please, like check for the orientation and check for text size
 public class MainActivity extends AppCompatActivity {
-    private StringBuilder value1 = new StringBuilder("");
-    private StringBuilder value2 = new StringBuilder("");
+    private StringBuilder value1 = new StringBuilder();
+    private StringBuilder value2 = new StringBuilder();
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.4F);
     //private String[] strValues = {"", ""};
     private String strOperator = "";
     private boolean blnOperator = false;
@@ -37,10 +40,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         orientation = this.getResources().getConfiguration().orientation;
 
-        output = (TextView) findViewById(R.id.textView_output);
-        operator = (TextView) findViewById(R.id.textView_op);
+        output = findViewById(R.id.textView_output);
+        operator = findViewById(R.id.textView_op);
 
-        Intent areaVol = getIntent();//coming from the AreaVolSolve activity
+        if (AreaVolSolve.blnSentBack) {
+            Intent areaVol = getIntent();
+            String strAreaVol = areaVol.getStringExtra(AreaVolSolve.EXTRA_BACK);
+            output.setText(strAreaVol);
+            value1 = new StringBuilder(strAreaVol);
+            checkSize();
+        }
 
         if (savedInstanceState != null) {
             boolean hasContent = savedInstanceState.getBoolean("resume");
@@ -71,11 +80,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDecimalClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
 
         //if operator has been clicked
         if (blnOperator) {
@@ -108,29 +116,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onEqualClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
 
         double dblAnswer = 0;
         if (blnOperator) {
-            if (strOperator.equals("+")) {
-                //dblAnswer = Double.parseDouble(strValues[0]) + Double.parseDouble(strValues[1]);
-                dblAnswer = Double.parseDouble(value1.toString()) + Double.parseDouble(value2.toString());
-            } else if (strOperator.equals("-")) {
-                //dblAnswer = Double.parseDouble(strValues[0]) - Double.parseDouble(strValues[1]);
-                dblAnswer = Double.parseDouble(value1.toString()) - Double.parseDouble(value2.toString());
-            } else if (strOperator.equals("*")) {
-                //dblAnswer = Double.parseDouble(strValues[0]) * Double.parseDouble(strValues[1]);
-                dblAnswer = Double.parseDouble(value1.toString()) * Double.parseDouble(value2.toString());
-            } else if (strOperator.equals("/")) {
-                //dblAnswer = Double.parseDouble(strValues[0]) / Double.parseDouble(strValues[1]);
-                dblAnswer = Double.parseDouble(value1.toString()) / Double.parseDouble(value2.toString());
-            } else if (strOperator.equals("%")) {
-                //dblAnswer = Double.parseDouble(strValues[0]) % Double.parseDouble(strValues[1]);
-                dblAnswer = Double.parseDouble(value1.toString()) % Double.parseDouble(value2.toString());
+            switch (strOperator) {
+                case "+":
+                    //dblAnswer = Double.parseDouble(strValues[0]) + Double.parseDouble(strValues[1]);
+                    dblAnswer = Double.parseDouble(value1.toString()) + Double.parseDouble(value2.toString());
+                    break;
+                case "-":
+                    //dblAnswer = Double.parseDouble(strValues[0]) - Double.parseDouble(strValues[1]);
+                    dblAnswer = Double.parseDouble(value1.toString()) - Double.parseDouble(value2.toString());
+                    break;
+                case "*":
+                    //dblAnswer = Double.parseDouble(strValues[0]) * Double.parseDouble(strValues[1]);
+                    dblAnswer = Double.parseDouble(value1.toString()) * Double.parseDouble(value2.toString());
+                    break;
+                case "/":
+                    //dblAnswer = Double.parseDouble(strValues[0]) / Double.parseDouble(strValues[1]);
+                    dblAnswer = Double.parseDouble(value1.toString()) / Double.parseDouble(value2.toString());
+                    break;
+                case "%":
+                    //dblAnswer = Double.parseDouble(strValues[0]) % Double.parseDouble(strValues[1]);
+                    dblAnswer = Double.parseDouble(value1.toString()) % Double.parseDouble(value2.toString());
+                    break;
             }
 
             if (output != null && operator != null) {
@@ -149,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 //strValues[0] = strAnswer;
                 // strValues[1] = "";
                 value1 = new StringBuilder(strAnswer);
-                value2 = new StringBuilder("");
+                value2 = new StringBuilder();
             }
 
         } else {
@@ -175,11 +188,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSevenClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "7";
@@ -199,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onThreeClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "3";
@@ -223,11 +236,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onPlusClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
             toast.show();
@@ -242,11 +255,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTwoClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "2";
@@ -266,11 +279,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSixClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "6";
@@ -290,11 +303,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMinusClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
             toast.show();
@@ -309,11 +322,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onFiveClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "5";
@@ -333,11 +346,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onEightClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "8";
@@ -357,11 +370,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNineClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "9";
@@ -381,11 +394,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onZeroClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "0";
@@ -405,15 +418,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClearClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //strValues[0] = "";
         //strValues[1] = "";
-        value1 = new StringBuilder("");
-        value2 = new StringBuilder("");
+        value1 = new StringBuilder();
+        value2 = new StringBuilder();
         if (output != null && operator != null) {
             output.setText("0");
             operator.setText("");
@@ -423,11 +436,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSlashClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
             toast.show();
@@ -442,11 +455,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onModulusClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
             toast.show();
@@ -461,11 +474,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onFourClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "4";
@@ -485,11 +498,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMultiplyClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
             toast.show();
@@ -504,11 +517,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onOneClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         //if operator has been clicked
         if (blnOperator) {
             //strValues[1] += "1";
@@ -528,11 +541,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDeleteClick(View view) {
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            output.setTextSize(85);
-        } else {
-            output.setTextSize(40);
-        }
+        view.startAnimation(buttonClick);
+
+        checkOrientation();
+        checkSize();
+
         if (blnOperator) {
             value2.setLength(Math.max(value2.length() - 1, 0));
             if (output != null) {
@@ -547,7 +560,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCalculationClick(View view) {
+        view.startAnimation(buttonClick);
+
         Intent selectIntent = new Intent(this, SelectActivity.class);
         startActivity(selectIntent);
+    }
+
+    public void checkOrientation() {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            output.setTextSize(85);
+        } else {
+            output.setTextSize(40);
+        }
+    }
+
+    public void checkSize() {
+        if (output != null) {
+            if (output.getText().toString().length() >= 7) {
+                output.setTextSize(40);
+            } else {
+                output.setTextSize(85);
+            }
+        }
     }
 }

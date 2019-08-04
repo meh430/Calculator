@@ -28,10 +28,25 @@
     <string name="button_label_rectangle">Area of Rectangle</string>
     <string name="button_label_circle">Area of Circle</string>
     <string name="button_label_rectPrism">Volume of Rectangular Prism</string>
-    <string name="button_label_pyramid3">Volume of 3 Sided Pyramid</string>
-    <string name="button_label_pyramid4">Volume of 4 Sided Pyramid</string>
+    <string name="button_label_pyramid3">Volume of Pyramid</string>
+    <string name="button_label_pyramid4">Volume of Pyramid</string>
     <string name="button_label_cone">Volume of Cone</string>
     <string name="button_label_cylinder">Volume of Cylinder</string>
     <string name="button_label_sphere">Volume of Sphere</string>
     <string name="activity3_name">Area/Volume</string>
+    <string name="main_label">0</string>
+    <string name="param1_label">Param1:</string>
+    <string name="param2_label">Param2:</string>
+    <string name="param3_label">Param3:</string>
+    <string name="param1_edit_label">Enter Value</string>
+    <string name="param2_edit_label">Enter Value</string>
+    <string name="param3_edit_label">Enter Value</string>
+    <string name="solve_label">Solve</string>
+    <string name="back_label">Send Back to main screen</string>
+    <string name="param_base">Base</string>
+    <string name="param_height">Height</string>
+    <string name="param_length">Length</string>
+    <string name="param_width">Width</string>
+    <string name="param_radius">Radius</string>
+    <string name="area_of_base">Area of Base</string>
 </resources>

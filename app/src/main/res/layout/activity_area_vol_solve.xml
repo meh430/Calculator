@@ -7,4 +7,151 @@
     android:layout_height="match_parent"
     tools:context=".AreaVolSolve">
 
+
+    <TextView
+        android:id="@+id/main_textview"
+        android:layout_width="373dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
+        android:text="@string/main_label"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/param1_textview"
+        android:layout_width="105dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="@string/param1_label"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_textview" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/param2_textview"
+        android:layout_width="105dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="@string/param2_label"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/param1_textview" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/param3_textview"
+        android:layout_width="105dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="@string/param3_label"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/param2_textview" />
+
+
+    <EditText
+        android:id="@+id/param1_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="@string/param1_edit_label"
+        android:inputType="numberDecimal|numberSigned"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FF9800"
+        android:textColorHint="#C4FFFFFF"
+        android:textColorLink="#FF9800"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/param1_textview"
+        app:layout_constraintTop_toBottomOf="@+id/main_textview"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/param2_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="@string/param2_edit_label"
+        android:inputType="numberDecimal|numberSigned"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FF9800"
+        android:textColorHint="#C4FFFFFF"
+        android:textColorLink="#FF9800"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/param2_textview"
+        app:layout_constraintTop_toBottomOf="@+id/param1_edit"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/param3_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="@string/param3_edit_label"
+        android:inputType="numberDecimal|numberSigned"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FF9800"
+        android:textColorHint="#C4FFFFFF"
+        android:textColorLink="#FF9800"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/param3_textview"
+        app:layout_constraintTop_toBottomOf="@+id/param2_edit"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:onClick="onSolve"
+        android:id="@+id/button_solve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/solve_label"
+        app:layout_constraintBottom_toTopOf="@+id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/param3_edit"
+        app:layout_constraintVertical_bias="0.474" />
+
+    <Button
+        android:onClick="onBack"
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/rounded_button2"
+        android:text="@string/back_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
