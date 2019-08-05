@@ -131,60 +131,76 @@ public class AreaVolSolve extends AppCompatActivity {
         double dblAreaBase, dblRadius, dblHeight, dblLength, dblWidth, dblBase;
 
         if (layout.equalsIgnoreCase("areaTriangle")) {
-            dblBase = Double.parseDouble(param1Edit.getText().toString());
-            dblHeight = Double.parseDouble(param2Edit.getText().toString());
+            if (notEmpty(2)) {
+                dblBase = Double.parseDouble(param1Edit.getText().toString());
+                dblHeight = Double.parseDouble(param2Edit.getText().toString());
 
-            strAnswer = Double.toString(1.0 / 2.0 * (dblBase * dblHeight));
+                strAnswer = Double.toString(Math.round((1.0 / 2.0 * (dblBase * dblHeight)) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("areaRectangle")) {
-            dblLength = Double.parseDouble(param1Edit.getText().toString());
-            dblWidth = Double.parseDouble(param2Edit.getText().toString());
+            if (notEmpty(2)) {
+                dblLength = Double.parseDouble(param1Edit.getText().toString());
+                dblWidth = Double.parseDouble(param2Edit.getText().toString());
 
-            strAnswer = Double.toString(dblLength * dblWidth);
+                strAnswer = Double.toString(Math.round((dblLength * dblWidth) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("areaCircle")) {
-            dblRadius = Double.parseDouble(param1Edit.getText().toString());
+            if (notEmpty(1)) {
+                dblRadius = Double.parseDouble(param1Edit.getText().toString());
 
-            strAnswer = Double.toString(Math.PI * Math.pow(dblRadius, 2));
+                strAnswer = Double.toString(Math.round((Math.PI * Math.pow(dblRadius, 2)) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("volumeRectangle")) {
-            dblLength = Double.parseDouble(param1Edit.getText().toString());
-            dblWidth = Double.parseDouble(param2Edit.getText().toString());
-            dblHeight = Double.parseDouble(param3Edit.getText().toString());
+            if (notEmpty(3)) {
+                dblLength = Double.parseDouble(param1Edit.getText().toString());
+                dblWidth = Double.parseDouble(param2Edit.getText().toString());
+                dblHeight = Double.parseDouble(param3Edit.getText().toString());
 
-            strAnswer = Double.toString(dblLength * dblWidth * dblHeight);
+                strAnswer = Double.toString(Math.round((dblLength * dblWidth * dblHeight) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("volumePyramid")) {
-            dblAreaBase = Double.parseDouble(param1Edit.getText().toString());
-            dblHeight = Double.parseDouble(param2Edit.getText().toString());
+            if (notEmpty(2)) {
+                dblAreaBase = Double.parseDouble(param1Edit.getText().toString());
+                dblHeight = Double.parseDouble(param2Edit.getText().toString());
 
-            strAnswer = Double.toString(1.0 / 3.0 * (dblAreaBase * dblHeight));
+                strAnswer = Double.toString(Math.round((1.0 / 3.0 * (dblAreaBase * dblHeight)) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("volumeCone")) {
-            dblRadius = Double.parseDouble(param1Edit.getText().toString());
-            dblHeight = Double.parseDouble(param2Edit.getText().toString());
+            if (notEmpty(2)) {
+                dblRadius = Double.parseDouble(param1Edit.getText().toString());
+                dblHeight = Double.parseDouble(param2Edit.getText().toString());
 
-            strAnswer = Double.toString(Math.PI * Math.pow(dblRadius, 2) * (dblHeight / 3.0));
+                strAnswer = Double.toString(Math.round((Math.PI * Math.pow(dblRadius, 2) * (dblHeight / 3.0)) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("volumeCylinder")) {
-            dblRadius = Double.parseDouble(param1Edit.getText().toString());
-            dblHeight = Double.parseDouble(param2Edit.getText().toString());
+            if (notEmpty(2)) {
+                dblRadius = Double.parseDouble(param1Edit.getText().toString());
+                dblHeight = Double.parseDouble(param2Edit.getText().toString());
 
-            strAnswer = Double.toString(Math.PI * Math.pow(dblRadius, 2) * dblHeight);
+                strAnswer = Double.toString(Math.round((Math.PI * Math.pow(dblRadius, 2) * dblHeight) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         } else if (layout.equalsIgnoreCase("volumeSphere")) {
-            dblRadius = Double.parseDouble(param1Edit.getText().toString());
+            if (notEmpty(1)) {
+                dblRadius = Double.parseDouble(param1Edit.getText().toString());
 
-            strAnswer = Double.toString(4.0 / 3.0 * Math.PI * Math.pow(dblRadius, 3));
+                strAnswer = Double.toString(Math.round((4.0 / 3.0 * Math.PI * Math.pow(dblRadius, 3)) * 100.0) / 100.0);
 
-            mainText.setText(strAnswer);
+                mainText.setText(strAnswer);
+            }
         }
     }
 
@@ -194,10 +210,39 @@ public class AreaVolSolve extends AppCompatActivity {
             blnSentBack = true;
             sendBack.putExtra(EXTRA_BACK, mainText.getText().toString());
             startActivity(sendBack);
-            finish();
         } else {
             Toast toast = Toast.makeText(this, "Nothing to Send", Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    //returns true if the main texview has content
+    public boolean notEmpty(int numOfParam) {
+        Toast empty = Toast.makeText(this, "Please Enter all Values", Toast.LENGTH_SHORT);
+        if (numOfParam == 1) {
+            if (param1Edit.getText().toString().equalsIgnoreCase("")) {
+                empty.show();
+                return false;
+            } else {
+                return true;
+            }
+        } else if (numOfParam == 2) {
+            if (param1Edit.getText().toString().equalsIgnoreCase("") || param2Edit.getText().toString().equalsIgnoreCase("")) {
+                empty.show();
+                return false;
+            } else {
+                return true;
+            }
+        } else if (numOfParam == 3) {
+            if (param1Edit.getText().toString().equalsIgnoreCase("") ||
+                    param2Edit.getText().toString().equalsIgnoreCase("") ||
+                    param3Edit.getText().toString().equalsIgnoreCase("")) {
+                empty.show();
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return true;
     }
 }

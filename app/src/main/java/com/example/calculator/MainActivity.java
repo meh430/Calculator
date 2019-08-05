@@ -121,68 +121,80 @@ public class MainActivity extends AppCompatActivity {
         checkOrientation();
         checkSize();
 
-        double dblAnswer = 0;
-        if (blnOperator) {
-            switch (strOperator) {
-                case "+":
-                    //dblAnswer = Double.parseDouble(strValues[0]) + Double.parseDouble(strValues[1]);
-                    dblAnswer = Double.parseDouble(value1.toString()) + Double.parseDouble(value2.toString());
-                    break;
-                case "-":
-                    //dblAnswer = Double.parseDouble(strValues[0]) - Double.parseDouble(strValues[1]);
-                    dblAnswer = Double.parseDouble(value1.toString()) - Double.parseDouble(value2.toString());
-                    break;
-                case "*":
-                    //dblAnswer = Double.parseDouble(strValues[0]) * Double.parseDouble(strValues[1]);
-                    dblAnswer = Double.parseDouble(value1.toString()) * Double.parseDouble(value2.toString());
-                    break;
-                case "/":
-                    //dblAnswer = Double.parseDouble(strValues[0]) / Double.parseDouble(strValues[1]);
-                    dblAnswer = Double.parseDouble(value1.toString()) / Double.parseDouble(value2.toString());
-                    break;
-                case "%":
-                    //dblAnswer = Double.parseDouble(strValues[0]) % Double.parseDouble(strValues[1]);
-                    dblAnswer = Double.parseDouble(value1.toString()) % Double.parseDouble(value2.toString());
-                    break;
-            }
-
-            if (output != null && operator != null) {
-                String strAnswer = Double.toString(dblAnswer);
-
-                if (strAnswer.length() >= 7) {
-                    output.setTextSize(40);
-                } else {
-                    output.setTextSize(85);
+        if (checkTextView()) {
+            boolean isZero = false;
+            double dblAnswer = 0;
+            if (blnOperator) {
+                switch (strOperator) {
+                    case "+":
+                        //dblAnswer = Double.parseDouble(strValues[0]) + Double.parseDouble(strValues[1]);
+                        dblAnswer = Double.parseDouble(value1.toString()) + Double.parseDouble(value2.toString());
+                        break;
+                    case "-":
+                        //dblAnswer = Double.parseDouble(strValues[0]) - Double.parseDouble(strValues[1]);
+                        dblAnswer = Double.parseDouble(value1.toString()) - Double.parseDouble(value2.toString());
+                        break;
+                    case "*":
+                        //dblAnswer = Double.parseDouble(strValues[0]) * Double.parseDouble(strValues[1]);
+                        dblAnswer = Double.parseDouble(value1.toString()) * Double.parseDouble(value2.toString());
+                        break;
+                    case "/":
+                        if (Double.parseDouble(value2.toString()) == 0) {
+                            isZero = true;
+                        } else {
+                            //dblAnswer = Double.parseDouble(strValues[0]) / Double.parseDouble(strValues[1]);
+                            dblAnswer = Double.parseDouble(value1.toString()) / Double.parseDouble(value2.toString());
+                        }
+                        break;
+                    case "%":
+                        //dblAnswer = Double.parseDouble(strValues[0]) % Double.parseDouble(strValues[1]);
+                        dblAnswer = Double.parseDouble(value1.toString()) % Double.parseDouble(value2.toString());
+                        break;
                 }
 
-                output.setText(strAnswer);
-                operator.setText("");
-                blnOperator = false;
-                strOperator = "";
-                //strValues[0] = strAnswer;
-                // strValues[1] = "";
-                value1 = new StringBuilder(strAnswer);
-                value2 = new StringBuilder();
-            }
+                if (output != null && operator != null) {
+                    String strAnswer;
+                    if (isZero) {
+                        strAnswer = "To infinity and beyond!";
+                    } else {
+                        strAnswer = Double.toString(dblAnswer);
+                    }
 
-        } else {
-            output.setTextSize(40);
-            String strEasterEgg;
-            if (value1.toString().equals("1971")) {
-                strEasterEgg = "Turn off the lights!";
-                output.setText(strEasterEgg);
-            } else if (value1.toString().equals("1974")) {
-                strEasterEgg = "I love you mom!";
-                output.setText(strEasterEgg);
-            } else if (value1.toString().equals("2002")) {
-                strEasterEgg = "I'm the best!";
-                output.setText(strEasterEgg);
-            } else if (value1.toString().equals("2006")) {
-                strEasterEgg = "Ha, loser!";
-                output.setText(strEasterEgg);
+                    if (strAnswer.length() >= 7) {
+                        output.setTextSize(40);
+                    } else {
+                        output.setTextSize(85);
+                    }
+
+                    output.setText(strAnswer);
+                    operator.setText("");
+                    blnOperator = false;
+                    strOperator = "";
+                    //strValues[0] = strAnswer;
+                    // strValues[1] = "";
+                    value1 = new StringBuilder(strAnswer);
+                    value2 = new StringBuilder();
+                }
+
             } else {
-                toast = Toast.makeText(this, R.string.no_operator, Toast.LENGTH_SHORT);
-                toast.show();
+                output.setTextSize(40);
+                String strEasterEgg;
+                if (value1.toString().equals("1971")) {
+                    strEasterEgg = "Turn off the lights!";
+                    output.setText(strEasterEgg);
+                } else if (value1.toString().equals("1974")) {
+                    strEasterEgg = "I love you mom!";
+                    output.setText(strEasterEgg);
+                } else if (value1.toString().equals("2002")) {
+                    strEasterEgg = "I'm the best!";
+                    output.setText(strEasterEgg);
+                } else if (value1.toString().equals("2006")) {
+                    strEasterEgg = "Ha, loser!";
+                    output.setText(strEasterEgg);
+                } else {
+                    toast = Toast.makeText(this, R.string.no_operator, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         }
     }
@@ -241,15 +253,17 @@ public class MainActivity extends AppCompatActivity {
         checkOrientation();
         checkSize();
 
-        if (blnOperator) {
-            toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if (output != null && operator != null) {
-                blnOperator = true;
-                strOperator = "+";
-                output.setText("");
-                operator.setText("+");
+        if (checkTextView()) {
+            if (blnOperator) {
+                toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                if (output != null && operator != null) {
+                    blnOperator = true;
+                    strOperator = "+";
+                    output.setText("");
+                    operator.setText("+");
+                }
             }
         }
     }
@@ -308,15 +322,17 @@ public class MainActivity extends AppCompatActivity {
         checkOrientation();
         checkSize();
 
-        if (blnOperator) {
-            toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if (output != null && operator != null) {
-                blnOperator = true;
-                strOperator = "-";
-                output.setText("");
-                operator.setText("-");
+        if (checkTextView()) {
+            if (blnOperator) {
+                toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                if (output != null && operator != null) {
+                    blnOperator = true;
+                    strOperator = "-";
+                    output.setText("");
+                    operator.setText("-");
+                }
             }
         }
     }
@@ -428,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
         value1 = new StringBuilder();
         value2 = new StringBuilder();
         if (output != null && operator != null) {
-            output.setText("0");
+            output.setText("");
             operator.setText("");
             blnOperator = false;
             strOperator = "";
@@ -441,15 +457,17 @@ public class MainActivity extends AppCompatActivity {
         checkOrientation();
         checkSize();
 
-        if (blnOperator) {
-            toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if (output != null && operator != null) {
-                blnOperator = true;
-                strOperator = "/";
-                output.setText("");
-                operator.setText("/");
+        if (checkTextView()) {
+            if (blnOperator) {
+                toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                if (output != null && operator != null) {
+                    blnOperator = true;
+                    strOperator = "/";
+                    output.setText("");
+                    operator.setText("/");
+                }
             }
         }
     }
@@ -460,15 +478,17 @@ public class MainActivity extends AppCompatActivity {
         checkOrientation();
         checkSize();
 
-        if (blnOperator) {
-            toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if (output != null && operator != null) {
-                blnOperator = true;
-                strOperator = "%";
-                output.setText("");
-                operator.setText("%");
+        if (checkTextView()) {
+            if (blnOperator) {
+                toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                if (output != null && operator != null) {
+                    blnOperator = true;
+                    strOperator = "%";
+                    output.setText("");
+                    operator.setText("%");
+                }
             }
         }
     }
@@ -500,18 +520,21 @@ public class MainActivity extends AppCompatActivity {
     public void onMultiplyClick(View view) {
         view.startAnimation(buttonClick);
 
+
         checkOrientation();
         checkSize();
 
-        if (blnOperator) {
-            toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            if (output != null && operator != null) {
-                blnOperator = true;
-                strOperator = "*";
-                output.setText("");
-                operator.setText("*");
+        if (checkTextView()) {
+            if (blnOperator) {
+                toast = Toast.makeText(this, R.string.operator_exists, Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                if (output != null && operator != null) {
+                    blnOperator = true;
+                    strOperator = "*";
+                    output.setText("");
+                    operator.setText("*");
+                }
             }
         }
     }
@@ -576,11 +599,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkSize() {
         if (output != null) {
-            if (output.getText().toString().length() >= 7) {
-                output.setTextSize(40);
-            } else {
-                output.setTextSize(85);
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                if (output.getText().toString().length() >= 7) {
+                    output.setTextSize(40);
+                } else {
+                    output.setTextSize(85);
+                }
             }
         }
+    }
+
+    public boolean checkTextView() {
+        toast = Toast.makeText(this, "Nothing was Entered", Toast.LENGTH_SHORT);
+        if (blnOperator) {
+            if (value2 == null || value2.toString().equalsIgnoreCase("")) {
+                toast.show();
+                return false;
+            }
+        } else {
+            if (value1 == null || value1.toString().equalsIgnoreCase("")) {
+                toast.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -230,8 +230,8 @@
 
     <Button
         android:id="@+id/button_operator_clear"
-        android:layout_width="@dimen/clear_lay_width"
-        android:layout_height="@dimen/clear_lay_height"
+        android:layout_width="184dp"
+        android:layout_height="69dp"
         android:layout_marginStart="@dimen/clear_marginStart"
         android:layout_marginLeft="@dimen/clear_marginLeft"
         android:layout_marginTop="192dp"
@@ -257,7 +257,6 @@
         android:layout_marginEnd="@dimen/output_marginEnd"
         android:layout_marginRight="@dimen/output_marginRight"
         android:onClick="onDeleteClick"
-        android:text="@string/textView_label_output"
         android:textColor="#F8F8F8"
         android:textSize="@dimen/output_textSize"
         app:layout_constraintEnd_toEndOf="parent"
