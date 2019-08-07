@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         orientation = this.getResources().getConfiguration().orientation;
-
         output = findViewById(R.id.textView_output);
         operator = findViewById(R.id.textView_op);
 
