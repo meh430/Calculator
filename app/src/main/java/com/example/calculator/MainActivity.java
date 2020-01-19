@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         orientation = this.getResources().getConfiguration().orientation;
-        output = findViewById(R.id.textView_output);
-        operator = findViewById(R.id.textView_op);
+        output = findViewById(R.id.tv_output);
+        operator = findViewById(R.id.tv_operator);
 
         if (AreaVolSolve.blnSentBack) {
             Intent areaVol = getIntent();
